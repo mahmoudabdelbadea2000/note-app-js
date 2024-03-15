@@ -1,0 +1,46 @@
+@import "toastify-js/src/toastify.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.note {
+  @apply space-y-2 transition-colors cursor-pointer hover:bg-section-color rounded-md p-2;
+}
+
+.add__note-icon {
+  @apply absolute -bottom-10 -right-9 bg-main-color w-14 h-14 rounded-full hidden lg:flex justify-center items-center shadow-icon-shadow;
+}
+
+.li-active {
+  @apply text-heading-color after:absolute after:top-0 after:-left-4 after:bg-main-color after:h-full after:w-1 after:rounded-lg;
+}
+
+.search-toggle {
+  @apply top-12 bg-section-color border-b h-12;
+}
+
+.custom__scroll::-webkit-scrollbar {
+  @apply w-0;
+}
+
+.img__empty-container {
+  @apply col-span-2 flex justify-center items-center;
+}
+
+.img__empty-container img {
+  @apply w-[900px] h-fit lg:h-[900px];
+}
+
+.select__note {
+  @apply bg-section-color;
+}
+
+.hidden-element {
+  display: none;
+}
+
+.display-element {
+  @apply block;
+}

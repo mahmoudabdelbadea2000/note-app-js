@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Aclonica&family=Inter&display=swap"
+      rel="stylesheet"
+    />
+    <!-- main style -->
+    <link rel="stylesheet" href="/styles/style.css" />
+    <title>Note App</title>
+  </head>
+  <body>
+    <main class="grid lg:grid-cols-[270px,1fr]">
+      <aside
+        class=" flex justify-between lg:items-center lg:block lg:h-screen py-3 lg:py-0 lg:pt-10 px-6 lg:border-r lg:bg-section-color lg:border-border-color relative transition-colors"
+      >
+        <div
+          class="w-4 flex lg:hidden flex-col gap-1 cursor-pointer toggle-manu"
+          tabindex="0"
+          role="button"
+        >
+          <span class="w-full h-[2px] bg-heading-color"></span>
+          <span class="w-full h-[2px] bg-heading-color"></span>
+          <span class="w-[65%] h-[2px] bg-heading-color"></span>
+        </div>
+        <a href="/">
+          <h1 class="text-[15px] text-main-color capitalize font-aclonica">
+            Almdrasa-Notes
+          </h1></a
+        >
+        <div
+          class="input-from-container  lg:mt-10 lg:mb-5 transition absolute lg:static -top-full lg:top-0 left-0 lg:translate-x-0 w-screen lg:w-fit lg:border-b-0 border-border-color lg:h-fit"
+        >
+          <div class="input__form relative px-7 lg:px-0">
+            <input
+              type="search"
+              class="input__form-search bg-white text-sec-color focus:outline-none rounded-md py-1 pl-9 pr-2 shadow-md w-full lg:w-fit"
+              placeholder="Search"
+              name="search"
+              id="search"
+            />
+            <div
+              class="absolute left-10 lg:left-2 top-[50%] translate-y-[-50%] text-[15px]"
+            >
+              <i
+                class="fa-solid fa-magnifying-glass input__form-icon text-sec-color"
+              ></i>
+            </div>
+          </div>
+        </div>
+        <nav
+          class="transition-all lg:block absolute lg:static top-0 -left-full bg-section-color lg:bg-transparent h-screen lg:h-fit w-[270px] lg:w-fit border-r border-border-color lg:border-0"
+        >
+          <div class="mt-4 ml-4 lg:hidden">
+            <i class="fa-solid fa-xmark text-2xl cursor-pointer close-nav"></i>
+          </div>
+          <ul class="space-y-2 pl-4 mt-16 lg:mt-0 ml-4 lg:ml-0">
+            <li
+              class="text-sec-color capitalize leading-7 cursor-pointer relative transition-[0.3s] li-active"
+              tabindex="0"
+              role="button"
+            >
+              notes
+            </li>
+            <li
+              class="text-sec-color capitalize leading-7 cursor-pointer relative transition-[0.3s]"
+              tabindex="0"
+              role="button"
+            >
+              add notes
+            </li>
+          </ul>
+        </nav>
+        <div class="lg:hidden">
+          <i
+            class="fa-solid fa-magnifying-glass input__search-icon text-heading-color cursor-pointer"
+          ></i>
+        </div>
+      </aside>
+      <article class="grid lg:grid-cols-[350px,1fr] notes__body">
+        <section
+          class="h-screen lg:border-r lg:border-border-color pt-12 overflow-y-auto custom__scroll"
+        >
+          <div class="pinned__note hidden-element">
+            <h4
+              class="text-main-color uppercase text-main-size leading-5 mb-3 px-5"
+            >
+              pinned
+            </h4>
+            <div class="p-3 space-y-2 pinned__note-container"></div>
+            <hr />
+          </div>
+          <div class="other__note hidden-element">
+            <h4
+              class="text-main-color uppercase text-main-size leading-5 mb-3 px-5 py-2 border-b border-border-color"
+            >
+              notes
+            </h4>
+            <div class="p-3 space-y-2 other__note-container"></div>
+          </div>
+        </section>
+        <section
+          class="px-4 lg:p-14 xl:p-28 hidden lg:block note__content"
+        ></section>
+      </article>
+      <article
+        class="px-4 lg:p-14 xl:p-28 mt-14 lg:mt-0 flex justify-center items-center hidden-element"
+      >
+        <div class="space-y-5 w-full md:w-[600px]">
+          <h2 class="text-2xl text-heading-color capitalize">add note</h2>
+          <form class="space-y-5 text-sec-color">
+            <div class="space-y-2">
+              <label
+                for="title"
+                class="block text-main-size leading-5 capitalize"
+                >title*</label
+              >
+              <input
+                type="text"
+                name="title"
+                id="title"
+                class="focus:outline-none border-0 w-full bg-section-color rounded-md h-11 pl-4"
+              />
+            </div>
+            <div class="space-y-2">
+              <label
+                for="author"
+                class="block text-main-size leading-5 capitalize"
+                >author*</label
+              >
+              <input
+                type="text"
+                name="title"
+                id="author"
+                class="focus:outline-none border-0 w-full bg-section-color rounded-md h-11 pl-4"
+              />
+            </div>
+            <div class="space-y-2">
+              <label
+                for="notes"
+                class="block text-main-size leading-5 capitalize"
+                >your notes*</label
+              >
+              <textarea
+                name="your notes"
+                id="notes"
+                class="focus:outline-none border-0 w-full bg-section-color rounded-md h-36 pl-4 pt-3"
+              ></textarea>
+            </div>
+            <div class="flex gap-3">
+              <button
+                type="submit"
+                class="text-white bg-main-color rounded-md py-2 px-5 add-btn"
+                data-btn="add note"
+              >
+                add note
+              </button>
+              <button
+                type="submit"
+                class="text-white bg-main-color rounded-md py-2 px-5 add-btn"
+                data-btn="add pinned note"
+              >
+                add pinned note
+              </button>
+            </div>
+          </form>
+        </div>
+      </article>
+      <article
+        class="px-4 lg:p-14 xl:p-28 mt-14 lg:mt-0 flex justify-center items-center hidden-element"
+      >
+        <div class="space-y-5 w-full md:w-[600px]">
+          <h2 class="text-2xl text-heading-color capitalize">edit note</h2>
+          <form class="space-y-5 text-sec-color">
+            <div class="space-y-2">
+              <label
+                for="title-edit"
+                class="block text-main-size leading-5 capitalize"
+                >title*</label
+              >
+              <input
+                type="text"
+                name="title-edit"
+                id="title-edit"
+                class="focus:outline-none border-0 w-full bg-section-color rounded-md h-11 pl-4"
+              />
+            </div>
+            <div class="space-y-2">
+              <label
+                for="author-edit"
+                class="block text-main-size leading-5 capitalize"
+                >author*</label
+              >
+              <input
+                type="text"
+                name="author-edit"
+                id="author-edit"
+                class="focus:outline-none border-0 w-full bg-section-color rounded-md h-11 pl-4"
+              />
+            </div>
+            <div class="space-y-2">
+              <label
+                for="notes-edit"
+                class="block text-main-size leading-5 capitalize"
+                >your notes*</label
+              >
+              <textarea
+                name="your-notes"
+                id="notes-edit"
+                class="focus:outline-none border-0 w-full bg-section-color rounded-md h-36 pl-4 pt-3"
+              ></textarea>
+            </div>
+            <div class="flex gap-3">
+              <button
+                type="submit"
+                class="text-white bg-main-color rounded-md py-2 px-5 edit-btn"
+                data-btn="edit note"
+              >
+                save note
+              </button>
+              <button
+                type="submit"
+                class="text-white bg-main-color rounded-md py-2 px-5 edit-btn"
+                data-btn="edit pinned note"
+              >
+                save as pinned note
+              </button>
+            </div>
+          </form>
+        </div>
+      </article>
+    </main>
+    <div
+      id="deleteModal"
+      class="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50 transition-all hidden-element"
+    >
+      <div class="bg-white p-8 rounded shadow-lg w-1/3">
+        <p class="text-xl font-semibold mb-4">
+          Are you sure you want to delete this note?
+        </p>
+        <div class="flex justify-end">
+          <button
+            id="confirmDeleteBtn"
+            class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-2 focus:outline-none focus:shadow-outline"
+          >
+            Delete
+          </button>
+          <button
+            id="cancelDeleteBtn"
+            class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/54b99eec12.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="scripts/main.js"></script>
+  </body>
+</html>
