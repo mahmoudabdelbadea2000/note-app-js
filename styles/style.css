@@ -21,7 +21,7 @@
 }
 
 .search-toggle {
-  @apply top-12 bg-section-color border-b h-12;
+  @apply top-12 bg-section-color border-b h-12 z-50;
 }
 
 .custom__scroll::-webkit-scrollbar {
