@@ -1,10 +1,12 @@
 import {
+  checkWindowWidth,
   deleteNote,
   editNote,
   initproject,
   notes,
   openNote,
   searching,
+  startResize,
 } from "./utils";
 import {
   addBtns,
@@ -23,6 +25,7 @@ import {
   confirmDeleteBtn,
   cancelDeleteBtn,
   inputSearchElement,
+  resizeIcon,
 } from "./elements";
 import { addNote, toggleNavManu } from "./utils";
 
@@ -107,3 +110,7 @@ cancelDeleteBtn.addEventListener("click", () =>
 inputSearchElement.addEventListener("keyup", () => {
   searching(inputSearchElement.value);
 });
+
+resizeIcon.addEventListener("mousedown", startResize);
+
+window.addEventListener("resize", checkWindowWidth);

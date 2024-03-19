@@ -32,3 +32,5 @@ export const modalElement = document.querySelector("#deleteModal");
 export const confirmDeleteBtn = document.querySelector("#confirmDeleteBtn");
 export const cancelDeleteBtn = document.querySelector("#cancelDeleteBtn");
 export const inputSearchElement = document.querySelector(".input__form-search");
+export const notesAsideSection = document.querySelector(".resize-section");
+export const resizeIcon = document.querySelector(".resize-icon");

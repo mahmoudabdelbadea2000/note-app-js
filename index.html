@@ -18,7 +18,7 @@
   <body>
     <main class="grid lg:grid-cols-[270px,1fr]">
       <aside
-        class=" flex justify-between lg:items-center lg:block lg:h-screen py-3 lg:py-0 lg:pt-10 px-6 lg:border-r lg:bg-section-color lg:border-border-color relative transition-colors"
+        class="flex justify-between lg:items-center lg:block lg:h-screen py-3 lg:py-0 lg:pt-10 px-6 lg:border-r lg:bg-section-color lg:border-border-color relative transition-colors"
       >
         <div
           class="w-4 flex lg:hidden flex-col gap-1 cursor-pointer toggle-manu"
@@ -35,7 +35,7 @@
           </h1></a
         >
         <div
-          class="input-from-container  lg:mt-10 lg:mb-5 transition absolute lg:static -top-full lg:top-0 left-0 lg:translate-x-0 w-screen lg:w-fit lg:border-b-0 border-border-color lg:h-fit"
+          class="input-from-container lg:mt-10 lg:mb-5 transition absolute lg:static -top-full lg:top-0 left-0 lg:translate-x-0 w-screen lg:w-fit lg:border-b-0 border-border-color lg:h-fit"
         >
           <div class="input__form relative px-7 lg:px-0">
             <input
@@ -55,7 +55,7 @@
           </div>
         </div>
         <nav
-          class="transition-all lg:block absolute lg:static top-0 -left-full bg-section-color lg:bg-transparent h-screen lg:h-fit w-[270px] lg:w-fit border-r border-border-color lg:border-0"
+          class="transition-all lg:block absolute lg:static top-0 -left-full z-50 bg-section-color lg:bg-transparent h-screen lg:h-fit w-[270px] lg:w-fit border-r border-border-color lg:border-0"
         >
           <div class="mt-4 ml-4 lg:hidden">
             <i class="fa-solid fa-xmark text-2xl cursor-pointer close-nav"></i>
@@ -84,33 +84,40 @@
         </div>
       </aside>
       <article class="grid lg:grid-cols-[350px,1fr] notes__body">
-        <section
-          class="h-screen lg:border-r lg:border-border-color pt-12 overflow-y-auto custom__scroll"
-        >
-          <div class="pinned__note hidden-element">
-            <h4
-              class="text-main-color uppercase text-main-size leading-5 mb-3 px-5"
-            >
-              pinned
-            </h4>
-            <div class="p-3 space-y-2 pinned__note-container"></div>
-            <hr />
+        <section class="relative resize-section bg-white z-30">
+          <div
+            class="h-screen lg:border-r lg:border-border-color pt-12 overflow-y-auto custom__scroll"
+          >
+            <div class="pinned__note hidden-element">
+              <h4
+                class="text-main-color uppercase text-main-size leading-5 mb-3 px-5"
+              >
+                pinned
+              </h4>
+              <div class="p-3 space-y-2 pinned__note-container"></div>
+              <hr />
+            </div>
+            <div class="other__note hidden-element">
+              <h4
+                class="text-main-color uppercase text-main-size leading-5 mb-3 px-5 py-2 border-b border-border-color"
+              >
+                notes
+              </h4>
+              <div class="p-3 space-y-2 other__note-container"></div>
+            </div>
           </div>
-          <div class="other__note hidden-element">
-            <h4
-              class="text-main-color uppercase text-main-size leading-5 mb-3 px-5 py-2 border-b border-border-color"
-            >
-              notes
-            </h4>
-            <div class="p-3 space-y-2 other__note-container"></div>
+          <div
+            class="resize-icon absolute top-28 -right-4 z-40 w-8 h-8 bg-white hidden lg:flex justify-center items-center border p-2 rounded-full cursor-move"
+          >
+            <i class="fa-solid fa-angle-right text-sec-color"></i>
           </div>
         </section>
         <section
-          class="px-4 lg:p-14 xl:p-28 hidden lg:block note__content"
+          class="px-4 lg:p-14 xl:p-28 hidden-element lg:block note__content"
         ></section>
       </article>
       <article
-        class="px-4 lg:p-14 xl:p-28 mt-14 lg:mt-0 flex justify-center items-center hidden-element"
+        class="px-4 lg:p-14 xl:p-28 mt-14 lg:mt-0 flex justify-center items-center lg:justify-start lg:items-start hidden-element"
       >
         <div class="space-y-5 w-full md:w-[600px]">
           <h2 class="text-2xl text-heading-color capitalize">add note</h2>
@@ -238,9 +245,9 @@
     </main>
     <div
       id="deleteModal"
-      class="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50 transition-all hidden-element"
+      class="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50 transition-all hidden-element p-4"
     >
-      <div class="bg-white p-8 rounded shadow-lg w-1/3">
+      <div class="bg-white p-8 rounded shadow-lg w-full lg:w-1/3">
         <p class="text-xl font-semibold mb-4">
           Are you sure you want to delete this note?
         </p>

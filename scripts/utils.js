@@ -15,6 +15,7 @@ import {
   titleEditElement,
   noteEditElement,
   authorEditElement,
+  notesAsideSection,
 } from "./elements";
 import { toast } from "./notification";
 
@@ -22,7 +23,6 @@ const trancatString = (string) => {
   return string.length > 100 ? `${string.slice(0, 100)}...` : string;
 };
 
-// toggle nav manu
 export const toggleNavManu = (type) => {
   type.addEventListener("click", () => {
     navHeaderElement.classList.toggle("left-0");
@@ -70,12 +70,12 @@ export const notes = fetchNotes("notes") || [];
 
 export const renderNoteOnSrceen = (notes) => {
   let noteContent = ``;
-  let pinnedNote = ``; 
+  let pinnedNote = ``;
   if (notes.length < 1) {
     notesBodyElement.innerHTML = `<section class="img__empty-container">
     <img src="/assets/img__empty.jpg" alt="notes empty" />
-      </section>`
-  } else  {
+      </section>`;
+  } else {
     notes.forEach((note, idx) => {
       if (note.isPinned) {
         pinnedNoteElement.classList.add("display-element");
@@ -183,10 +183,13 @@ export const openNote = (idx) => {
             <p class="leading-7 text-heading-color">
               ${noteInfo?.note}
             </p>
-            <div
-              class="add__note-icon"
-            >
-              <i class="fa-solid fa-plus text-white text-2xl cursor-pointer edit-icon"></i>
+            <div class="mt-4 flex justify-between items-center">
+              <div class="add__note-icon"> 
+                <i class="fa-solid fa-plus text-white text-2xl cursor-pointer edit-icon"></i>
+              </div>
+              <div class="back-icon-content"> 
+                <i class="fa-solid fa-angles-left text-2xl cursor-pointer back-icon"></i>
+              </div>
             </div>
           </div>`;
 
@@ -239,11 +242,52 @@ export const deleteNote = (elementIDX) => {
 export const searching = (value) => {
   if (value.trim() !== "") {
     let searchNote = notes.filter((note) =>
-     note.title.toLowerCase().includes(value.toLowerCase())
-      );
-  
-      saveOnLocalStorage("notes", searchNote);
-      renderNoteOnSrceen(searchNote)
+      note.title.toLowerCase().includes(value.toLowerCase())
+    );
+
+    saveOnLocalStorage("notes", searchNote);
+    renderNoteOnSrceen(searchNote);
+  }
+};
+
+export const startResize = (e) => {
+  const currentWidth = notesAsideSection.offsetWidth;
+  const currentHeight = notesAsideSection.offsetHeight;
+  const startX = e.clientX;
+  const startY = e.clientY;
+
+  const resize = ({ clientX, clientY }) => {
+    notesAsideSection.style.width = `${currentWidth + clientX - startX}px`;
+    notesAsideSection.style.height = `${currentHeight + clientY - startY}px`;
+  };
+
+  const stopResize = () => {
+    document.removeEventListener("mousemove", resize);
+  };
+
+  document.addEventListener("mousemove", resize);
+  document.addEventListener("mouseup", stopResize, { once: true });
+};
+
+export const checkWindowWidth = () => {
+  const windowWidth = window.innerWidth;
+  const notesSections = document.querySelectorAll(".notes__body section");
+
+  if (windowWidth < 1024) {
+    oneNoteElement().forEach((note) => {
+      note.addEventListener("click", () => {
+        notesSections.forEach((section) => {
+          section.classList.toggle("hidden-element");
+        });
+      });
+    });
+    document.addEventListener("click", (e) => {
+      if (e.target.classList.contains("back-icon")) {
+        notesSections.forEach((section) => {
+          section.classList.toggle("hidden-element");
+        });
+      }
+    });
   }
 };
 
@@ -252,4 +296,5 @@ export const initproject = (notes) => {
   const note = oneNoteElement()[0];
   note?.classList.add("select__note");
   openNote(note?.dataset.idx);
+  checkWindowWidth();
 };

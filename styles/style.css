@@ -4,13 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .note {
   @apply space-y-2 transition-colors cursor-pointer hover:bg-section-color rounded-md p-2;
 }
 
 .add__note-icon {
-  @apply absolute -bottom-10 -right-9 bg-main-color w-14 h-14 rounded-full hidden lg:flex justify-center items-center shadow-icon-shadow;
+  @apply absolute -bottom-10 right-0 lg:-right-9 bg-main-color w-14 h-14 rounded-full flex justify-center items-center shadow-icon-shadow;
+}
+
+.back-icon-content {
+  @apply absolute -bottom-10 left-0 lg:hidden;
 }
 
 .li-active {
